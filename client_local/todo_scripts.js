@@ -3,6 +3,7 @@ const storageItemName = "myJSTodos";
 
 let addForm = document.getElementById("addTodo");
 let addButton = document.getElementById("addButton");
+let deleteAllButton = document.getElementById("deleteAllButton");
 let closeButton = document.getElementById("closeButton");
 let addTodoButton = document.getElementById("addTodoButton");
 let todoHeader = document.getElementById("todoHeader");
@@ -20,6 +21,13 @@ const loadTodos = function() {
 
 const saveTodos = function(todos) {
     localStorage.setItem(storageItemName, JSON.stringify(todos));
+}
+
+const deleteAllTodos = function() {
+    if (confirm("Törlöd az összes feladatot?") === true) {
+        localStorage.removeItem(storageItemName);
+        showTodos();
+    }
 }
 
 const showTodoHeader = function() {
@@ -129,6 +137,7 @@ const deleteTodoButtonPressed = function(e) {
 }
 
 addButton.onclick = addButtonPressed;
+deleteAllButton.onclick = deleteAllTodos;
 closeButton.onclick = addTodoClosed;
 addTodoButton.onclick = addTodoButtonPressed;
 
