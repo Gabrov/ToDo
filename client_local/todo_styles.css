@@ -1,5 +1,6 @@
-.todoaddbutton {
-    width: 10%;
+.todobuttons {
+    width: 20%;
+    text-align: center;
     margin: auto;
     padding: 10px;
 }
