@@ -10,13 +10,13 @@ Fícsörz:
 
 * tárolás a kliens oldalon (localStorage)
 * teendő hozzáadása és törlése, összes feladat törlése
+* szerkesztés
+* új teendő hozzáadásakor az aktuális dátum jelenik meg, a teendő mező pedig üres
 
 Ami hiánycikk (és így hirtelen eszembe jut):
 
-* szerkesztés
 * ellenőrzés (jelenleg mindent is szabad)
 * keresés, rendezés
-* új teendő hozzáadásakor az ablakban ne legyenek ott az előző értékek
 * két szövegmező, mint a mintában
 * pofásítás (nagyon alap stílus, nem foglalkoztam vele)
 

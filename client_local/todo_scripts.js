@@ -34,6 +34,30 @@ const deleteAllTodos = function() {
     }
 }
 
+const formatDateTimeToString = function(datetime = "") {
+    let localDate = "";
+    if (datetime !== "") {
+        localDate = new Date(datetime);
+    } else {
+        localDate = new Date();
+    }
+    let date = localDate.toLocaleDateString('hu-HU');
+    let time = localDate.toLocaleTimeString('hu-HU', { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    return date + " " + time;
+}
+
+const formatDateTimeToField = function(datetime = "") {
+    let localDate = datetime;
+    if (localDate === "") {
+        localDate = formatDateTimeToString(new Date());
+    }
+    let returnValue = localDate.substring(0, 12).trim();
+    returnValue = returnValue.replaceAll('. ', '-');
+    returnValue += 'T' + localDate.substring(14, 19);
+
+    return returnValue;
+}
+
 const showTodoHeader = function() {
     let tr = document.createElement("tr");
     tableHeader.forEach((value) => {
@@ -112,15 +136,13 @@ const pageLoaded = function() {
 const showModal = function(todoId) {
     if (todoId !== undefined) {
         let todo = loadTodos()[todoId];
-        let datetime = todo.datetime.substring(0, 12).trim();
-        datetime = datetime.replaceAll('. ', '-');
-        datetime += 'T' + todo.datetime.substring(14, 19);
-        dateTimeField.value = datetime;
+        dateTimeField.value = formatDateTimeToField(todo.datetime);
         todoField.value = todo.todo;
         addTodoButton.textContent = "Módosítás";
         addTodoButton.value = "edit_" + todoId;
     } else {
-        todoField.value = "";
+        dateTimeField.value = formatDateTimeToField();
+        todoFieldvalue = "";
         addTodoButton.value = "";
     }
 
@@ -143,16 +165,12 @@ const addTodoButtonPressed = function(e) {
     let datetime = document.getElementsByName("datetime")[0].value;
     let todo = document.getElementById("todo").value;
 
-    let fullDate = new Date(datetime);
-    let date = fullDate.toLocaleDateString('hu-HU');
-    let time = fullDate.toLocaleTimeString('hu-HU', { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-
     let localTodos = loadTodos();
     if (e.target.value === "")
-        localTodos.push({ datetime: date + " " + time, todo: todo });
+        localTodos.push({ datetime: formatDateTimeToString(datetime), todo: todo });
     else {
         let id = e.target.value.split('_')[1];
-        localTodos[id] = { datetime: date + " " + time, todo: todo }
+        localTodos[id] = { datetime: formatDateTimeToString(datetime), todo: todo }
         e.target.value = "";
     }
 
