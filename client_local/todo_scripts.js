@@ -1,8 +1,14 @@
 const tableHeader = ["Időpont", "Teendő", "Szerkesztés", "Törlés"];
+const sortableColumns = 2;
 const storageItemName = "myJSTodos";
+
+let filter = "";
+let sorting = { col: -1, direction: "" }
 
 let addButton = document.getElementById("addButton");
 let deleteAllButton = document.getElementById("deleteAllButton");
+let filterField = document.getElementById("filter");
+let clearFilterButton = document.getElementById("clearFilter");
 
 let addForm = document.getElementById("addTodo");
 let dateTimeField = document.getElementById("datetime");
@@ -58,11 +64,62 @@ const formatDateTimeToField = function(datetime = "") {
     return returnValue;
 }
 
+const setSorting = function(index) {
+    if (sorting.col === -1)
+        sorting.col = index;
+    else if (sorting.col !== index) {
+        sorting.col = index;
+        sorting.direction = "";
+    }
+
+    if (sorting.direction === "")
+        sorting.direction = "ASC";
+    else if (sorting.direction === "ASC")
+        sorting.direction = "DESC";
+    else {
+        sorting.col = -1;
+        sorting.direction = "";
+    }
+
+    showTodoHeader();
+    showTodos();
+}
+
+const sortFunction = function(a, b) {
+    let returnValue = 0;
+    if (a > b)
+        returnValue = 1;
+    else if (a < b)
+        returnValue = -1;
+    if (sorting.direction === "DESC")
+        returnValue *= -1;
+
+    return returnValue;
+}
+
 const showTodoHeader = function() {
+    todoHeader.innerHTML = "";
     let tr = document.createElement("tr");
-    tableHeader.forEach((value) => {
+    tableHeader.forEach((value, index) => {
         let th = document.createElement("th");
+        let sortStr = "";
         th.append(value);
+        if (index < sortableColumns) {
+            sortStr += ' <span id="col' + index + '" onclick="setSorting(' + index + '); return false;">(';
+            if (sorting.col === -1)
+                sortStr += 'X'
+            else {
+                if (index === sorting.col) {
+                    if (sorting.direction === "ASC")
+                        sortStr += '^';
+                    else if (sorting.direction === "DESC")
+                        sortStr += 'V';
+                } else
+                    sortStr += 'X';
+            }
+            sortStr += ')</span>';
+            th.innerHTML += sortStr;
+        }
         tr.appendChild(th);
     });
     todoHeader.appendChild(tr);
@@ -72,6 +129,24 @@ const showTodos = function() {
     todoBody.innerHTML = "";
 
     let todos = loadTodos();
+
+    if (filter !== "")
+        todos = todos.filter(function(currentTodo) {
+            return currentTodo.datetime.indexOf(filter) > -1 ||
+                   currentTodo.todo.indexOf(filter) > -1;
+        });
+
+    if (sorting.col !== -1) {
+        if (sorting.col === 0) {
+            todos = todos.sort(function(a, b) {
+                return sortFunction(a.datetime, b.datetime);
+            });
+        } else if (sorting.col === 1) {
+            todos = todos.sort(function(a, b) {
+                return sortFunction(a.todo, b.todo);
+            });
+        }
+    }
 
 /*
     let todos = [
@@ -121,7 +196,11 @@ const showTodos = function() {
         let td = document.createElement("td");
         td.colSpan = tableHeader.length;
         td.style.textAlign = "center";
-        td.append("Nincs semmilyen teendő!");
+        if (filter === "")
+            td.append("Nincs semmilyen teendő!");
+        else
+            td.append("Nincs a szűrésnek megfelelő teendő!");
+
         tr.appendChild(td);
         todoBody.appendChild(tr);
     }
@@ -194,8 +273,22 @@ const deleteTodoButtonPressed = function(e) {
     showTodos();
 }
 
+const setFilter = function(e) {
+    filter = e.target.value;
+    showTodos();
+}
+
+const clearFilterButtonPressed = function() {
+    filter ="";
+    filterField.value = "";
+    showTodos();
+}
+
 addButton.onclick = addButtonPressed;
 deleteAllButton.onclick = deleteAllTodos;
+filterField.oninput = setFilter;
+clearFilterButton.onclick = clearFilterButtonPressed;
+
 closeButton.onclick = addTodoClosed;
 addTodoButton.onclick = addTodoButtonPressed;
 

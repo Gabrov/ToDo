@@ -12,11 +12,12 @@ Fícsörz:
 * teendő hozzáadása és törlése, összes feladat törlése
 * szerkesztés
 * új teendő hozzáadásakor az aktuális dátum jelenik meg, a teendő mező pedig üres
+* "full-text" keresés
+* rendezés
 
 Ami hiánycikk (és így hirtelen eszembe jut):
 
 * ellenőrzés (jelenleg mindent is szabad)
-* keresés, rendezés
 * két szövegmező, mint a mintában
 * pofásítás (nagyon alap stílus, nem foglalkoztam vele)
 
