@@ -111,9 +111,9 @@ const showTodoHeader = function() {
             else {
                 if (index === sorting.col) {
                     if (sorting.direction === "ASC")
-                        sortStr += '^';
+                        sortStr += '&#9650;'; // felfelé mutató kitöltött háromszög
                     else if (sorting.direction === "DESC")
-                        sortStr += 'V';
+                        sortStr += '&#9660;'; // lefelé mutató kitöltött háromszög
                 } else
                     sortStr += 'X';
             }
