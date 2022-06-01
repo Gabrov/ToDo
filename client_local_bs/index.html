@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <title>Vanilla ToDo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="bootstrap/bootstrap-icons.css" integrity="sha384-4bpolJFhhET1aw/R44dJzx8ZRNzuWJnn89IkdIlHM0+HEM9J9m4ukLZXQR2KSai0" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="todo_styles.css" />
+  </head>
+  <body>
+    <div class="container, todobuttons">
+      <button id="addButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-backdrop="static" data-keyboard="false">Teendő hozzáadása</button>
+      <button id="deleteAllButton" class="btn btn-danger">
+        Összes teendő törlése
+      </button>
+    </div>
+    <div class="container, todobuttons">
+      <div class="input-group">
+        <input type="search" id="filter" class="form-control" placeholder="Keresendő kifejezés" aria-label="Keresés" aria-describedby="basic-addon1"></input>
+        <button id="clearFilter" class="btn btn-primary">Szűrő törlése</button>
+      </div>
+    </div>
+    <div>
+      <table class="table table-hover mytable">
+        <thead id="todoHeader"></thead>
+        <tbody id="todoBody"></tbody>
+      </table>
+    </div>
+    <div id="modal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Teendő hozzáadása</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">Teendő ideje</span>
+              <input id="datetime" name="datetime" class="form-control" type="datetime-local" />
+            </div>
+            <div class="input-group">
+              <span class="input-group-text">Teendő</span>
+              <textarea id="todo" name="todo" rows="5" cols="40" placeholder="feladat leírása"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="addTodoButtonDiv">
+              <button id="addTodoButton" class="btn btn-primary" data-bs-dismiss="modal" id="liveToastBtn">Hozzáadás</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong id="toastHeader" class="me-auto"></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id="toastBody" class="toast-body">
+        </div>
+      </div>
+    </div>  </body>
+  <script src="bootstrap/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"></script>
+  <script src="todo_scripts.js"></script>
+</html>

@@ -1,0 +1,17 @@
+.todobuttons {
+    width: 30%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+}
+
+.header-text {
+    text-align: center;
+    font-size: larger;
+}
+
+.mytable {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
