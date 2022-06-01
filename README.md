@@ -15,11 +15,10 @@ Fícsörz:
 * "full-text" keresés
 * rendezés
 
-Ami hiánycikk (és így hirtelen eszembe jut):
+Ami még hiányozhat:
 
 * ellenőrzés (jelenleg mindent is szabad)
 * két szövegmező, mint a mintában
-* pofásítás (nagyon alap stílus, nem foglalkoztam vele)
 
 A modal ablakot a [W3Schools](https://www.w3schools.com/howto/howto_css_modals.asp)-tól loptam.
 A HTML5 `<dialog>` tag-jével valószínűleg rondább, de egyszerűbb lenne.
