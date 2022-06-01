@@ -24,12 +24,16 @@
     </div>
     <div id="addTodo" class="addtodo">
       <div class="modal-content">
-        <div class="header-text"><p>Teendő hozzáadása</p></div>
-        <span id="closeButton" class="close">&times;</span>
-        <div>
+        <div class="header-text">
+          <p>Teendő hozzáadása</p>
+          <span id="closeButton" class="close">&times;</span>
+        </div>
+        <div class="datePickDiv">
           <label for="datetime">Teendő ideje:</label>
           <input id="datetime" name="datetime" type="datetime-local" />
-          <label for="todo">Teendő:</label>
+        </div>
+        <div class="todoTextDiv">
+          <label for="todo">Teendő:</label>&nbsp;
           <textarea
             id="todo"
             name="todo"
@@ -37,6 +41,8 @@
             cols="33"
             placeholder="feladat leírása"
           ></textarea>
+        </div>
+        <div class="addTodoButtonDiv">
           <button id="addTodoButton">Hozzáadás</button>
         </div>
       </div>

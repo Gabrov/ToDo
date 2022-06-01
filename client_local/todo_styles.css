@@ -42,7 +42,7 @@ table {
     margin: 15% auto; /* 15% a tetejétől és középre igazítva */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* lehet több és kevesebb is, a felbontáson múlik */
+    width: 20%; /* lehet több és kevesebb is, a felbontáson múlik */
   }
 
 .close {
@@ -56,4 +56,24 @@ table {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.datePickDiv {
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todoTextDiv {
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addTodoButtonDiv {
+    text-align: center;
 }
