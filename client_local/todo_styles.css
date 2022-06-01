@@ -77,3 +77,12 @@ table {
 .addTodoButtonDiv {
     text-align: center;
 }
+
+.errorMessage {
+    display: none;
+    margin-top: 10px;
+    background-color: firebrick;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}

@@ -14,10 +14,10 @@ Fícsörz:
 * új teendő hozzáadásakor az aktuális dátum jelenik meg, a teendő mező pedig üres
 * "full-text" keresés
 * rendezés
+* alapvető ellenőrzés (nem lehet a múltban rögzíteni vagy módosítani, teendőt kötelező beírni)
 
 Ami még hiányozhat:
 
-* ellenőrzés (jelenleg mindent is szabad)
 * két szövegmező, mint a mintában
 
 A modal ablakot a [W3Schools](https://www.w3schools.com/howto/howto_css_modals.asp)-tól loptam.

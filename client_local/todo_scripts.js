@@ -15,6 +15,7 @@ let dateTimeField = document.getElementById("datetime");
 let todoField = document.getElementById("todo");
 let closeButton = document.getElementById("closeButton");
 let addTodoButton = document.getElementById("addTodoButton");
+let errorMessageDiv = document.getElementById("errorMessage");
 
 let todoHeader = document.getElementById("todoHeader");
 let todoBody = document.getElementById("todoBody");
@@ -244,19 +245,30 @@ const addTodoButtonPressed = function(e) {
     let datetime = document.getElementsByName("datetime")[0].value;
     let todo = document.getElementById("todo").value;
 
-    let localTodos = loadTodos();
-    if (e.target.value === "")
-        localTodos.push({ datetime: formatDateTimeToString(datetime), todo: todo });
-    else {
-        let id = e.target.value.split('_')[1];
-        localTodos[id] = { datetime: formatDateTimeToString(datetime), todo: todo }
-        e.target.value = "";
+    errorMessageDiv.textContent = "";
+    if (datetime < formatDateTimeToField(formatDateTimeToString())) {
+        errorMessageDiv.textContent = "A dátum és idő nem lehet régebbi, mint az aktuális időpont!";
+    } else if (todo === "") {
+        errorMessageDiv.textContent = "Teendőt meg kell adni!";
     }
 
-    saveTodos(localTodos);
+    if (errorMessageDiv.textContent !== "") {
+        errorMessageDiv.style.display = "block";
+    } else {
+        let localTodos = loadTodos();
+        if (e.target.value === "")
+            localTodos.push({ datetime: formatDateTimeToString(datetime), todo: todo });
+        else {
+            let id = e.target.value.split('_')[1];
+            localTodos[id] = { datetime: formatDateTimeToString(datetime), todo: todo }
+            e.target.value = "";
+        }
 
-    hideModal();
-    showTodos();
+        saveTodos(localTodos);
+
+        hideModal();
+        showTodos();
+    }
 }
 
 const editTodoButtonPressed = function(e) {
