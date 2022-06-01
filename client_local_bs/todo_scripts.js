@@ -218,7 +218,6 @@ const pageLoaded = function() {
 }
 
 const addButtonPressed = function(e) {
-    console.log("ehe");
     dateTimeField.value = formatDateTimeToField();
     todoField.value = "";
     addTodoButton.value = "";
